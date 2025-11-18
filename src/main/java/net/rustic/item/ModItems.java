@@ -14,7 +14,10 @@ public class ModItems {
     // Al mod
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RusticMod.MOD_ID);
 
+    //foods
     public static final RegistryObject<Item> OLIVES = ITEMS.register("olives", () -> new Item(new Item.Properties().food(ModFoods.OLIVES).stacksTo(24)));
+    public static final RegistryObject<Item> IRONBERRIES = ITEMS.register("ironberries", () -> new Item(new Item.Properties().food(ModFoods.IRONBERRIES).stacksTo(24)));
+
 
     // Método estático para poder acceder a registrar los elementos en el eventBus que habrá en la clase main
     public static void register(IEventBus eventBus){
