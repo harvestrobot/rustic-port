@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mediccombatmod:syringe"
+    },
+    {
+      "tag": "mediccombatmod:mushrooms"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "mediccombatmod:strange_syringe"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "mediccombatmod:block/temporal_beacon"
+  }
+}

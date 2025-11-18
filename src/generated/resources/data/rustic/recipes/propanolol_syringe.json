@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mediccombatmod:syringe"
+    },
+    {
+      "item": "minecraft:snowball"
+    },
+    {
+      "tag": "minecraft:flowers"
+    }
+  ],
+  "result": {
+    "item": "mediccombatmod:propanolol_syringe"
+  }
+}
