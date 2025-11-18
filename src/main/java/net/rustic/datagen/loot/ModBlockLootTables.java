@@ -1,10 +1,10 @@
-package net.rusticmod.datagen.loot;
+package net.rustic.datagen.loot;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import net.rusticmod.block.ModBlocks;
+import net.rustic.block.ModBlocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;

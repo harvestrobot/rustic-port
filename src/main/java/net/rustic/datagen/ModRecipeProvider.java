@@ -1,12 +1,8 @@
-package net.rusticmod.datagen;
+package net.rustic.datagen;
 
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Items;
-import net.rusticmod.block.ModBlocks;
-import net.rusticmod.item.ModItems;
-import net.rusticmod.util.ModTags;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;

@@ -1,4 +1,4 @@
-package net.rusticmod.datagen;
+package net.rustic.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -6,9 +6,8 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.rusticmod.RusticMod;
-import net.rusticmod.item.ModItems;
-import net.rusticmod.util.ModTags;
+import net.rustic.RusticMod;
+import net.rustic.util.ModTags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

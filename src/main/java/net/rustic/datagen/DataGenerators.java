@@ -1,4 +1,4 @@
-package net.rusticmod.datagen;
+package net.rustic.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -7,7 +7,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rusticmod.RusticMod;
+import net.rustic.RusticMod;
 
 import java.util.concurrent.CompletableFuture;
 

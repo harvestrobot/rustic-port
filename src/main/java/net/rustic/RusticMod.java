@@ -1,4 +1,4 @@
-package net.rusticmod;
+package net.rustic;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,10 +12,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.rusticmod.block.ModBlocks;
-import net.rusticmod.entity.ModBlockEntities;
-import net.rusticmod.item.ModItems;
-import net.rusticmod.item.RusticModCreativeModeTabs;
+import net.rustic.block.ModBlocks;
+import net.rustic.entity.ModBlockEntities;
+import net.rustic.item.ModItems;
+import net.rustic.item.RusticModCreativeModeTabs;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file

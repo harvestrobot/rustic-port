@@ -1,4 +1,4 @@
-package net.rusticmod.item;
+package net.rustic.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

@@ -1,4 +1,4 @@
-package net.rusticmod;
+package net.rustic;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
