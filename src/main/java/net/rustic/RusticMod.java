@@ -15,7 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rustic.block.ModBlocks;
 import net.rustic.entity.ModBlockEntities;
 import net.rustic.item.ModItems;
-import net.rustic.item.RusticModCreativeModeTabs;
+import net.rustic.item.RusticCreativeModeTabs;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -41,7 +41,7 @@ public class RusticMod
         ModBlockEntities.register(modEventBus);
 
         // Register the creative tabs
-        RusticModCreativeModeTabs.register(modEventBus);
+        RusticCreativeModeTabs.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

@@ -8,6 +8,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.rustic.RusticMod;
+import net.rustic.item.ModItems;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -16,7 +17,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-//        simpleItem(ModItems.SYRINGE);
+        simpleItem(ModItems.OLIVES);
+        simpleItem(ModItems.IRONBERRIES);
+        simpleItem(ModItems.TOMATO);
+        simpleItem(ModItems.CHILI_PEPPER);
+        simpleItem(ModItems.GHOST_PEPPER);
+        simpleItem(ModItems.WILDBERRIES);
+        simpleItem(ModItems.GRAPES);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item){

@@ -16,7 +16,7 @@ public class ModFoods {
             .fast()
             .alwaysEat()
             .nutrition(2)
-            .saturationMod(0.4f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 300), 1).build();
+            .saturationMod(0.4f).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300), 1).build();
 
     //TODO si haces clic derecho con el tomate en la mano, lo debería lanzar
     public static final FoodProperties TOMATO = new FoodProperties.Builder()
@@ -39,11 +39,11 @@ public class ModFoods {
     public static final FoodProperties WILDBERRIES = new FoodProperties.Builder()
             .fast()
             .nutrition(2)
-            .saturationMod(0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200), 1).build();
+            .saturationMod(0.5f).build();
 
     public static final FoodProperties GRAPES = new FoodProperties.Builder()
             .fast()
             .nutrition(3)
-            .saturationMod(0.3f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200), 1).build();
+            .saturationMod(0.3f).build();
 
 }
