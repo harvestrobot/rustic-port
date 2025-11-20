@@ -1,6 +1,8 @@
 package net.rustic;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -13,7 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rustic.block.ModBlocks;
-import net.rustic.entity.ModBlockEntities;
+import net.rustic.entity.ModEntities;
 import net.rustic.item.ModItems;
 import net.rustic.item.RusticCreativeModeTabs;
 import org.slf4j.Logger;
@@ -38,7 +40,7 @@ public class RusticMod
         ModBlocks.register(modEventBus);
 
         // Register the entity blocks
-        ModBlockEntities.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         // Register the creative tabs
         RusticCreativeModeTabs.register(modEventBus);
@@ -78,6 +80,9 @@ public class RusticMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+
+            EntityRenderers.register(ModEntities.TOMATO_PROJECTILE_ENTITY.get(), ThrownItemRenderer::new);
+
         }
     }
 }
