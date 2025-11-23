@@ -15,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rustic.block.ModBlocks;
+import net.rustic.effect.ModEffects;
 import net.rustic.entity.ModEntities;
 import net.rustic.item.ModItems;
 import net.rustic.item.RusticCreativeModeTabs;
@@ -41,6 +42,9 @@ public class RusticMod
 
         // Register the entity blocks
         ModEntities.register(modEventBus);
+
+        // Register the effects
+        ModEffects.register(modEventBus);
 
         // Register the creative tabs
         RusticCreativeModeTabs.register(modEventBus);

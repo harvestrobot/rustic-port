@@ -16,24 +16,38 @@ public class TomatoProjectile extends Item {
         super(pProperties);
     }
 
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        if (pPlayer.isCrouching()) {
-            pLevel.playSound((Player) null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
-            if (!pLevel.isClientSide) {
-                TomatoProjectileEntity tomato = new TomatoProjectileEntity(pLevel, pPlayer);
-                tomato.setItem(itemstack);
-                tomato.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 1.5F, 1.0F);
-                pLevel.addFreshEntity(tomato);
+    @Override
+    public InteractionResultHolder<ItemStack> use(final Level level, final Player player, final InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+
+        // if player is crouching we shoot the tomato
+        if (player.isShiftKeyDown()) {
+
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
             }
 
-            pPlayer.awardStat(Stats.ITEM_USED.get(this));
-            if (!pPlayer.getAbilities().instabuild) {
-                itemstack.shrink(1);
+            level.playSound(null,
+                    player.getX(),
+                    player.getY(),
+                    player.getZ(),
+                    SoundEvents.SNOWBALL_THROW,
+                    SoundSource.NEUTRAL,
+                    0.5F,
+                    0.4F / (player.getRandom().nextFloat() * 0.4F + 0.8F)
+            );
+
+            if (!level.isClientSide) {
+                final TomatoProjectileEntity projectile = new TomatoProjectileEntity(level, player);
+                projectile.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+                level.addFreshEntity(projectile);
             }
 
-            return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
+            player.awardStat(Stats.ITEM_USED.get(this));
+            return InteractionResultHolder.success(stack);
         }
-        return InteractionResultHolder.pass(itemstack);
+
+        // if player is not crouching then the tomato is eaten
+        return super.use(level, player, hand);
     }
 }
