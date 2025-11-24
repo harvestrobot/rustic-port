@@ -14,6 +14,8 @@ public class Config
 {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
+    public static final int TICKS_IN_MINUTE = 1200;
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     private static boolean validateItemName(final Object obj)

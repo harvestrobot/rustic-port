@@ -10,12 +10,17 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -139,5 +144,65 @@ public class EventHandlerClient {
 
         RenderSystem.enableDepthTest();
         RenderSystem.disableBlend();
+    }
+
+    @SubscribeEvent
+    public static void onLeftClickAir(PlayerInteractEvent.LeftClickEmpty event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+
+        if (playerHasFirePowerEffect(player, level)) {
+            launchFireball(player, level);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+
+        if (playerHasFirePowerEffect(player, level)) {
+            launchFireball(player, level);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAttackEntity(AttackEntityEvent event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+
+        if (playerHasFirePowerEffect(player, level)) {
+            launchFireball(player, level);
+        }
+    }
+
+
+    private static boolean playerHasFirePowerEffect(Player player, Level level) {
+        // Servidor
+        if (level.isClientSide) return false;
+
+        // Comprueba tu efecto custom
+        return player.hasEffect(ModEffects.FIRE_POWER_EFFECT.get());
+    }
+
+
+    public static void launchFireball(Player player, Level level) {
+        Vec3 look = player.getLookAngle();
+
+        SmallFireball fireball = new SmallFireball(
+                level,
+                player,
+                look.x * 0.5,
+                look.y * 0.5,
+                look.z * 0.5
+        );
+
+        fireball.setPos(
+                player.getX() + look.x * 1.5,
+                player.getEyeY() + look.y * 1.5,
+                player.getZ() + look.z * 1.5
+        );
+
+        level.addFreshEntity(fireball);
     }
 }

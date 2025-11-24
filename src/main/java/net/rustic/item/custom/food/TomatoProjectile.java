@@ -1,5 +1,6 @@
-package net.rustic.item.custom;
+package net.rustic.item.custom.food;
 
+import lombok.NonNull;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.rustic.entity.custom.TomatoProjectileEntity;
+import org.jetbrains.annotations.NotNull;
 
 public class TomatoProjectile extends Item {
     public TomatoProjectile(Properties pProperties) {
@@ -17,7 +19,7 @@ public class TomatoProjectile extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(final Level level, final Player player, final InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NonNull final Level level, @NonNull final Player player, @NonNull final InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         // if player is crouching we shoot the tomato
