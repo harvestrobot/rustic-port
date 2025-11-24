@@ -19,14 +19,5 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
 
-        // Syringe
-//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SYRINGE.get(), 2)
-//                .pattern("  N")
-//                .pattern(" G ")
-//                .pattern("G  ")
-//                .define('N', Items.IRON_NUGGET)
-//                .define('G', Items.GLASS_PANE)
-//                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
-//                .save(pWriter);
     }
 }

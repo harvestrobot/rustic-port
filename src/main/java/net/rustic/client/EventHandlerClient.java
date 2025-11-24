@@ -10,11 +10,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
@@ -28,6 +26,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.earlydisplay.RenderElement;
 import net.rustic.RusticMod;
 import net.rustic.effect.ModEffects;
+import net.rustic.network.LaunchFireballPacket;
+import net.rustic.network.ModNetwork;
+
+import static net.rustic.client.EventHandlerUtils.launchFireball;
+import static net.rustic.client.EventHandlerUtils.playerHasFirePowerEffect;
 
 @Mod.EventBusSubscriber(modid = RusticMod.MOD_ID, value = Dist.CLIENT)
 public class EventHandlerClient {
@@ -146,10 +149,13 @@ public class EventHandlerClient {
         RenderSystem.disableBlend();
     }
 
+    //TODO this is not working at all. when left clicking in the air it does not launch a fireball.
     @SubscribeEvent
     public static void onLeftClickAir(PlayerInteractEvent.LeftClickEmpty event) {
         Player player = event.getEntity();
         Level level = player.level();
+
+        if (level.isClientSide()) return;
 
         if (playerHasFirePowerEffect(player, level)) {
             launchFireball(player, level);
@@ -176,33 +182,12 @@ public class EventHandlerClient {
         }
     }
 
+    @SubscribeEvent
+    public static void onLeftClickAirClient(PlayerInteractEvent.LeftClickEmpty event) {
+        Player player = event.getEntity();
 
-    private static boolean playerHasFirePowerEffect(Player player, Level level) {
-        // Servidor
-        if (level.isClientSide) return false;
-
-        // Comprueba tu efecto custom
-        return player.hasEffect(ModEffects.FIRE_POWER_EFFECT.get());
-    }
-
-
-    public static void launchFireball(Player player, Level level) {
-        Vec3 look = player.getLookAngle();
-
-        SmallFireball fireball = new SmallFireball(
-                level,
-                player,
-                look.x * 0.5,
-                look.y * 0.5,
-                look.z * 0.5
-        );
-
-        fireball.setPos(
-                player.getX() + look.x * 1.5,
-                player.getEyeY() + look.y * 1.5,
-                player.getZ() + look.z * 1.5
-        );
-
-        level.addFreshEntity(fireball);
+        if (playerHasFirePowerEffect(player, player.level())) {
+            ModNetwork.INSTANCE.sendToServer(new LaunchFireballPacket());
+        }
     }
 }
