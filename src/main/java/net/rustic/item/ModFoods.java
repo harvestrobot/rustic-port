@@ -35,11 +35,6 @@ public class ModFoods {
             .saturationMod(0.7f).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400), 1)
             .build();
 
-    public static final FoodProperties WILDBERRIES = new FoodProperties.Builder()
-            .fast()
-            .nutrition(2)
-            .saturationMod(0.5f).build();
-
     public static final FoodProperties GRAPES = new FoodProperties.Builder()
             .fast()
             .nutrition(3)

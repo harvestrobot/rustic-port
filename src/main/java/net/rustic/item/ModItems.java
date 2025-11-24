@@ -21,7 +21,6 @@ public class ModItems {
     public static final RegistryObject<Item> TOMATO = ITEMS.register("tomato", () -> new TomatoProjectile(new Item.Properties().food(ModFoods.TOMATO)));
     public static final RegistryObject<Item> CHILI_PEPPER = ITEMS.register("chili_pepper", () -> new Item(new Item.Properties().food(ModFoods.CHILI_PEPPER)));
     public static final RegistryObject<Item> GHOST_PEPPER = ITEMS.register("ghost_pepper", () -> new Item(new Item.Properties().food(ModFoods.GHOST_PEPPER)));
-    public static final RegistryObject<Item> WILDBERRIES = ITEMS.register("wildberries", () -> new Item(new Item.Properties().food(ModFoods.WILDBERRIES)));
     public static final RegistryObject<Item> GRAPES = ITEMS.register("grapes", () -> new Item(new Item.Properties().food(ModFoods.GRAPES)));
 
     // Método estático para poder acceder a registrar los elementos en el eventBus que habrá en la clase main

@@ -33,7 +33,6 @@ public class RusticCreativeModeTabs {
                                 pOutput.accept(ModItems.GRAPES.get());
                                 pOutput.accept(ModItems.CHILI_PEPPER.get());
                                 pOutput.accept(ModItems.GHOST_PEPPER.get());
-                                pOutput.accept(ModItems.WILDBERRIES.get());
                                 pOutput.accept(ModItems.IRONBERRIES.get());
                                 pOutput.accept(ModItems.TOMATO.get());
                             })

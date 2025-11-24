@@ -22,7 +22,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.TOMATO);
         simpleItem(ModItems.CHILI_PEPPER);
         simpleItem(ModItems.GHOST_PEPPER);
-        simpleItem(ModItems.WILDBERRIES);
         simpleItem(ModItems.GRAPES);
     }
 
