@@ -3,6 +3,7 @@ package net.rustic.item;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.rustic.effect.ModEffects;
 
 public class ModFoods {
 
@@ -11,14 +12,12 @@ public class ModFoods {
             .nutrition(1)
             .saturationMod(0.4f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200), 1).build();
 
-    //TODO hay que crear el efecto Fullmetal para las ironberries
     public static final FoodProperties IRONBERRIES = new FoodProperties.Builder()
             .fast()
             .alwaysEat()
             .nutrition(2)
-            .saturationMod(0.4f).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300), 1).build();
+            .saturationMod(0.4f).effect(() -> new MobEffectInstance(ModEffects.FULLMETAL_EFFECT.get(), 300), 1).build();
 
-    //TODO si haces clic derecho con el tomate en la mano, lo debería lanzar
     public static final FoodProperties TOMATO = new FoodProperties.Builder()
             .nutrition(4)
             .saturationMod(0.4f).build();

@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rustic.RusticMod;
+import net.rustic.effect.custom.FullmetalEffect;
 import net.rustic.effect.custom.TomatoBleedEffect;
 
 public class ModEffects {
@@ -18,6 +19,8 @@ public class ModEffects {
 
     public static final RegistryObject<MobEffect> TOMATO_BLEED_EFFECT = MOB_EFFECTS.register("tomato_bleed_effect",
             TomatoBleedEffect::new);
+    public static final RegistryObject<MobEffect> FULLMETAL_EFFECT = MOB_EFFECTS.register("fullmetal_effect",
+            FullmetalEffect::new);
 
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
