@@ -11,14 +11,14 @@ import net.rustic.effect.ModEffects;
  */
 public class EventHandlerUtils {
 
-    public static boolean playerHasFirePowerEffect(Player player, Level level) {
+    public static boolean playerHasFirePowerEffect(final Player player, final Level level) {
         if (level.isClientSide) return false;
 
         return player.hasEffect(ModEffects.FIRE_POWER_EFFECT.get());
     }
 
 
-    public static void launchFireball(Player player, Level level) {
+    public static void launchFireball(final Player player, final Level level) {
         Vec3 look = player.getLookAngle();
 
         SmallFireball fireball = new SmallFireball(
@@ -37,5 +37,4 @@ public class EventHandlerUtils {
 
         level.addFreshEntity(fireball);
     }
-
 }

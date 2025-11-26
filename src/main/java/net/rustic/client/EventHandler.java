@@ -33,7 +33,7 @@ import static net.rustic.client.EventHandlerUtils.launchFireball;
 import static net.rustic.client.EventHandlerUtils.playerHasFirePowerEffect;
 
 @Mod.EventBusSubscriber(modid = RusticMod.MOD_ID, value = Dist.CLIENT)
-public class EventHandlerClient {
+public class EventHandler {
 
     public static ResourceLocation FULLMETAL_OVERLAY = ResourceLocation.parse(
             "rustic:textures/misc/fullmetal_overlay.png");
@@ -41,7 +41,7 @@ public class EventHandlerClient {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onFullmetalFov(ComputeFovModifierEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
         if (player.hasEffect(ModEffects.FULLMETAL_EFFECT.get())) {
 
             float f = 1.0F;
@@ -68,10 +68,10 @@ public class EventHandlerClient {
     public static void onPlayerInput(TickEvent.PlayerTickEvent event) {
         if (event.side != LogicalSide.CLIENT) return;
 
-        Player player = event.player;
+        final Player player = event.player;
         if (player.hasEffect(ModEffects.FULLMETAL_EFFECT.get())) {
 
-            Minecraft mc = Minecraft.getInstance();
+            final Minecraft mc = Minecraft.getInstance();
 
             if (mc.player == player && player.hasEffect(ModEffects.FULLMETAL_EFFECT.get())) {
                 Input input = mc.player.input;
@@ -89,23 +89,23 @@ public class EventHandlerClient {
     //TODO this is bad idk what im doing help
     @SubscribeEvent
     public static void onRenderFullmetalOverlay(RenderHandEvent event) {
-        Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
+        final Minecraft mc = Minecraft.getInstance();
+        final Player player = mc.player;
         if (player == null) return;
 
         if (!player.hasEffect(ModEffects.FULLMETAL_EFFECT.get())) return;
 
         event.setCanceled(true);
 
-        boolean flag = mc.getCameraEntity() instanceof LivingEntity living && living.isSleeping();
+        final boolean flag = mc.getCameraEntity() instanceof LivingEntity living && living.isSleeping();
 
-        ItemRenderer heldRenderer = mc.getItemRenderer(); // Obtener el HeldItemRenderer
+        final ItemRenderer heldRenderer = mc.getItemRenderer();
 
-        PoseStack poseStack = event.getPoseStack();
-        MultiBufferSource bufferSource = event.getMultiBufferSource();
-        RenderElement.DisplayContext displayContext;
+        final PoseStack poseStack = event.getPoseStack();
+        final MultiBufferSource bufferSource = event.getMultiBufferSource();
+        final RenderElement.DisplayContext displayContext;
 
-        ItemStack main = mc.player.getMainHandItem();
+        final ItemStack main = mc.player.getMainHandItem();
 
         if (mc.options.getCameraType().isFirstPerson() && !flag && !mc.options.hideGui && !mc.isPaused()) {
             mc.gameRenderer.lightTexture().turnOnLightLayer();
@@ -118,9 +118,9 @@ public class EventHandlerClient {
         RenderSystem.disableDepthTest();
         RenderSystem.setShaderTexture(0, FULLMETAL_OVERLAY);
 
-        float baseAlpha = 0.9625F;
+        final float baseAlpha = 0.9625F;
         float durationFade = 1.0F;
-        int effectDuration = player.getEffect(ModEffects.FULLMETAL_EFFECT.get()).getDuration();
+        final int effectDuration = player.getEffect(ModEffects.FULLMETAL_EFFECT.get()).getDuration();
 
         if (effectDuration < 100) {
             float dur = (effectDuration + event.getPartialTick()) * 2F;
@@ -137,7 +137,7 @@ public class EventHandlerClient {
         //TODO ???
         RenderSystem.setShaderColor(0F, 0F, 0F, baseAlpha * durationFade);
 
-        BufferBuilder buffer = Tesselator.getInstance().getBuilder();
+        final BufferBuilder buffer = Tesselator.getInstance().getBuilder();
         buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         buffer.vertex(-1.0D, -1.0D, -0.5D).uv(1.5F, 1.5F).endVertex();
         buffer.vertex(1.0D, -1.0D, -0.5D).uv(-0.5F, 1.5F).endVertex();
@@ -152,8 +152,8 @@ public class EventHandlerClient {
     //TODO this is not working at all. when left clicking in the air it does not launch a fireball.
     @SubscribeEvent
     public static void onLeftClickAir(PlayerInteractEvent.LeftClickEmpty event) {
-        Player player = event.getEntity();
-        Level level = player.level();
+        final Player player = event.getEntity();
+        final Level level = player.level();
 
         if (level.isClientSide()) return;
 
@@ -164,8 +164,8 @@ public class EventHandlerClient {
 
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-        Player player = event.getEntity();
-        Level level = player.level();
+        final Player player = event.getEntity();
+        final Level level = player.level();
 
         if (playerHasFirePowerEffect(player, level)) {
             launchFireball(player, level);
@@ -174,20 +174,31 @@ public class EventHandlerClient {
 
     @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
-        Player player = event.getEntity();
-        Level level = player.level();
+        final Player player = event.getEntity();
+        final Level level = player.level();
 
         if (playerHasFirePowerEffect(player, level)) {
             launchFireball(player, level);
         }
     }
 
-    @SubscribeEvent
-    public static void onLeftClickAirClient(PlayerInteractEvent.LeftClickEmpty event) {
-        Player player = event.getEntity();
+//    @SubscribeEvent
+//    public static void onLeftClickAirClient(PlayerInteractEvent.LeftClickEmpty event) {
+//        final Player player = event.getEntity();
+//        final Level level = player.level();
+//
+//        if (playerHasFirePowerEffect(player, level)) {
+//            launchFireball(player, level);
+//        }
+//    }
 
-        if (playerHasFirePowerEffect(player, player.level())) {
-            ModNetwork.INSTANCE.sendToServer(new LaunchFireballPacket());
+    @SubscribeEvent
+    public static void leftClickAir(final PlayerInteractEvent.LeftClickEmpty e) {
+        final Player player = e.getEntity();
+        final Level level = player.level();
+
+        if (playerHasFirePowerEffect(player, level)) {
+            ModNetwork.sendToServer(new LaunchFireballPacket());
         }
     }
 }

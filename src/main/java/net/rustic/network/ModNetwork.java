@@ -6,18 +6,16 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.rustic.RusticMod;
 
 public class ModNetwork {
-    private static int ID = 0;
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+
+    public static final String PROTOCOL_VERSION = "1";
+    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             ResourceLocation.fromNamespaceAndPath(RusticMod.MOD_ID, "main"),
-            () -> "1.0",
-            s -> true,
-            s -> true
+            () -> PROTOCOL_VERSION,
+            PROTOCOL_VERSION::equals,
+            PROTOCOL_VERSION::equals
     );
 
-    public static void register() {
-        INSTANCE.registerMessage(ID++, LaunchFireballPacket.class,
-                LaunchFireballPacket::encode,
-                LaunchFireballPacket::decode,
-                LaunchFireballPacket::handle);
+    public static void sendToServer(Object msg) {
+        CHANNEL.sendToServer(msg);
     }
 }
