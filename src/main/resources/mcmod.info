@@ -5,10 +5,13 @@
   "description": "A medieval themed Minecraft mod based around decoration, exploration, agriculture, and alchemy.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "https://github.com/cadaverous-eris/Rustic",
+  "url": "https://github.com/harvestrobot/rustic-port",
   "updateUrl": "",
-  "authorList": ["cadaverous-eris"],
-  "credits": "",
+  "authorList": [
+    "cadaverous-eris",
+    "harvestrobot"
+  ],
+  "credits": "Full credit to cadaverous-eris for mod idea, development, assets... Everything really, I just ported it.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
